@@ -1,65 +1,116 @@
-import Image from "next/image";
+import Link from "next/link";
+import FadeIn from "@/components/FadeIn";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      {/* Hero */}
+      <section className="relative min-h-screen flex items-center justify-center bg-night overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-lavender/[0.03] rounded-full blur-[150px]" />
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <FadeIn>
+            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
+              Vision Compass
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.15}>
+            <h1 className="text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-white/90 leading-[1.25] tracking-tight">
+              一人ひとりが持っている
+              <br />
+              <span className="text-lavender">才能の花</span>を開花させる
+            </h1>
+          </FadeIn>
+
+          <FadeIn delay={0.3}>
+            <p className="mt-8 text-base sm:text-base text-white/30 max-w-md mx-auto leading-[1.9]">
+              心をテクノロジーで科学して、
+              <br className="sm:hidden" />
+              人類の知恵として未来に繋げる。
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.45}>
+            <div className="mt-14">
+              <Link
+                href="/product"
+                className="inline-flex items-center justify-center px-8 py-3.5 text-sm tracking-wide bg-lavender/10 text-lavender border border-lavender/20 rounded-full hover:bg-lavender/20 transition-all duration-300"
+              >
+                ねるぞうを見る
+              </Link>
+            </div>
+          </FadeIn>
         </div>
-      </main>
-    </div>
+
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent to-white/10" />
+        </div>
+      </section>
+
+      {/* Product Introduction */}
+      <section className="py-32 sm:py-44 bg-mist">
+        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <FadeIn>
+            <p className="text-lavender-muted text-sm tracking-[0.3em] uppercase mb-6">
+              Product
+            </p>
+            <h2 className="text-3xl sm:text-[2.5rem] font-bold text-night leading-tight mb-6">
+              ねるぞう
+            </h2>
+            <p className="text-night/30 text-sm tracking-wide">
+              AI睡眠ジャーナリングアプリ
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.1}>
+            <p className="text-night/45 text-base leading-[2] max-w-lg mx-auto mt-10">
+              寝る前のAI対話で、あなたの思考や感情をそっと記録。
+              パーソナライズされた睡眠音声で、
+              深いリラックスと安らかな眠りへ導きます。
+            </p>
+          </FadeIn>
+
+          <FadeIn delay={0.2}>
+            <div className="mt-12">
+              <Link
+                href="/product"
+                className="text-lavender-muted hover:text-lavender text-sm tracking-wide transition-colors duration-300"
+              >
+                詳しく見る &rarr;
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-32 sm:py-44 bg-night relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
+        </div>
+
+        <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <FadeIn>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white/90 mb-6 leading-tight">
+              お気軽にご相談ください
+            </h2>
+            <p className="text-white/25 text-base leading-[1.9] mb-12">
+              事業やプロダクトに関するお問い合わせは、
+              <br className="hidden sm:block" />
+              下記よりお願いいたします。
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center px-8 py-3.5 text-sm tracking-wide bg-lavender/10 text-lavender border border-lavender/20 rounded-full hover:bg-lavender/20 transition-all duration-300"
+            >
+              お問い合わせ
+            </Link>
+          </FadeIn>
+        </div>
+      </section>
+    </>
   );
 }
