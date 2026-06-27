@@ -22,6 +22,8 @@ export default function Footer() {
                 { href: "/about", label: "会社概要" },
                 { href: "/product", label: "プロダクト" },
                 { href: "/contact", label: "お問い合わせ" },
+                { href: "/legal/terms", label: "利用規約" },
+                { href: "/legal/privacy", label: "プライバシーポリシー" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
@@ -30,19 +32,6 @@ export default function Footer() {
                   >
                     {link.label}
                   </Link>
-                </li>
-              ))}
-            </ul>
-
-            <ul className="space-y-3">
-              {["X (Twitter)", "Instagram", "Note"].map((label) => (
-                <li key={label}>
-                  <a
-                    href="#"
-                    className="text-white/25 hover:text-white/50 transition-colors duration-300 text-sm tracking-wide"
-                  >
-                    {label}
-                  </a>
                 </li>
               ))}
             </ul>
