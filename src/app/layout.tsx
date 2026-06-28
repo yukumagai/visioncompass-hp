@@ -12,15 +12,15 @@ const notoSansJP = Noto_Sans_JP({
 
 export const metadata: Metadata = {
   title: {
-    default: "株式会社VisionCompass | 一人ひとりが持っている才能の花を開花させる",
+    default: "株式会社VisionCompass | 魂の望みで生きられる世界を創る",
     template: "%s | VisionCompass",
   },
   description:
-    "株式会社VisionCompassは「一人ひとりが持っている才能の花を開花させる」をビジョンに掲げ、AI睡眠ジャーナリングアプリ「ねるぞう」を開発しています。",
+    "株式会社VisionCompassは「魂の望みで生きられる世界を創る」をミッションに掲げ、AI睡眠ジャーナリングアプリ「ねるぞう」を開発しています。",
   metadataBase: new URL("https://visioncompass.jp"),
   openGraph: {
     title: "株式会社VisionCompass",
-    description: "一人ひとりが持っている才能の花を開花させる",
+    description: "世界を才能の花で満たす。",
     url: "https://visioncompass.jp",
     siteName: "VisionCompass",
     locale: "ja_JP",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "株式会社VisionCompass",
-    description: "一人ひとりが持っている才能の花を開花させる",
+    description: "世界を才能の花で満たす。",
     images: ["/og-image.png"],
   },
 };

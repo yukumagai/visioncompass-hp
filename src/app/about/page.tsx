@@ -4,7 +4,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "会社概要",
   description:
-    "株式会社VisionCompassの会社概要。ビジョン・代表メッセージ・会社情報をご紹介します。",
+    "株式会社VisionCompassの会社概要。ミッション・代表メッセージ・会社情報をご紹介します。",
 };
 
 const companyInfo = [
@@ -34,24 +34,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Vision */}
+      {/* Mission */}
       <section className="py-32 sm:py-44 bg-mist">
         <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
             <p className="text-lavender-muted text-sm tracking-[0.3em] uppercase mb-8">
-              Vision
+              Mission
             </p>
             <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-night leading-[1.35]">
-              一人ひとりが持っている
+              魂の望みで生きられる
               <br />
-              才能の花を開花させる
+              世界を創る
             </h2>
             <div className="mt-10 w-8 h-px bg-lavender/40 mx-auto" />
-            <p className="mt-10 text-night/40 text-base leading-[2] max-w-xl mx-auto">
-              私たちは、すべての人の内面に価値があると信じています。
-              AIテクノロジーの力で一人ひとりの心を科学し、
-              個人の自己理解を促進するとともに、
-              人類共通の知的資産として次世代に受け継ぎます。
+            <p className="mt-10 text-lavender-muted text-base leading-[2]">
+              世界を才能の花で満たす。
+            </p>
+            <p className="mt-8 text-night/40 text-base leading-[2] max-w-xl mx-auto">
+              一人ひとりが持っている才能の花を開花させる。
+              AIテクノロジーの力で一人ひとりの心に寄り添い、
+              自分らしい生き方をサポートします。
             </p>
           </FadeIn>
         </div>

@@ -18,18 +18,16 @@ export default function Home() {
           </FadeIn>
 
           <FadeIn delay={0.15}>
-            <h1 className="text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-white/90 leading-[1.25] tracking-tight">
-              一人ひとりが持っている
+            <h1 className="text-[2.25rem] sm:text-5xl md:text-6xl lg:text-[4.25rem] font-bold text-white/90 leading-[1.35] tracking-tight">
+              魂の望みで生きられる
               <br />
-              <span className="text-lavender">才能の花</span>を開花させる
+              世界を<span className="text-lavender">創る</span>
             </h1>
           </FadeIn>
 
           <FadeIn delay={0.3}>
             <p className="mt-8 text-base sm:text-base text-white/30 max-w-md mx-auto leading-[1.9]">
-              心をテクノロジーで科学して、
-              <br className="sm:hidden" />
-              人類の知恵として未来に繋げる。
+              世界を才能の花で満たす。
             </p>
           </FadeIn>
 

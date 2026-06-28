@@ -10,9 +10,7 @@ export default function Footer() {
               VisionCompass
             </p>
             <p className="text-white/20 text-sm mt-3 leading-relaxed">
-              一人ひとりが持っている
-              <br />
-              才能の花を開花させる
+              世界を才能の花で満たす。
             </p>
           </div>
 
