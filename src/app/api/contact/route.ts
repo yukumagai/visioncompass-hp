@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   }
 
   const { error } = await resend.emails.send({
-    from: "Vision Compass <onboarding@resend.dev>",
+    from: "VisionCompass <onboarding@resend.dev>",
     to: process.env.CONTACT_TO_EMAIL ?? "",
     replyTo: email,
     subject: `【お問い合わせ】${subject}`,

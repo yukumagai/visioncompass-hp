@@ -33,7 +33,7 @@ export default function Header() {
             href="/"
             className="text-white/90 text-sm tracking-[0.15em] font-medium"
           >
-            Vision Compass
+            VisionCompass
           </Link>
 
           <div className="hidden md:flex items-center gap-10">

@@ -4,11 +4,11 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "会社概要",
   description:
-    "株式会社Vision Compassの会社概要。ビジョン・代表メッセージ・会社情報をご紹介します。",
+    "株式会社VisionCompassの会社概要。ビジョン・代表メッセージ・会社情報をご紹介します。",
 };
 
 const companyInfo = [
-  { label: "会社名", value: "株式会社Vision Compass" },
+  { label: "会社名", value: "株式会社VisionCompass" },
   { label: "所在地", value: "東京都目黒区八雲2-20-12" },
   { label: "事業内容", value: "AI睡眠ジャーナリングアプリの開発・運営" },
   { label: "URL", value: "https://visioncompass.jp" },
@@ -91,7 +91,7 @@ export default function AboutPage() {
               </p>
               <p>
                 この体験を、テクノロジーの力で、もっと多くの人に届けたい。
-                それがVision Compassの出発点です。
+                それがVisionCompassの出発点です。
               </p>
               <p>
                 最初のプロダクトとして、AI睡眠ジャーナリングアプリ「ねるぞう」を開発しています。
@@ -102,7 +102,7 @@ export default function AboutPage() {
 
             <div className="mt-16 pt-8 border-t border-white/[0.06]">
               <p className="text-white/50 text-sm">
-                株式会社Vision Compass
+                株式会社VisionCompass
               </p>
               <p className="text-white/25 text-sm mt-1">
                 代表取締役　熊谷 祐

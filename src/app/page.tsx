@@ -13,7 +13,7 @@ export default function Home() {
         <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <FadeIn>
             <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
-              Vision Compass
+              VisionCompass
             </p>
           </FadeIn>
 

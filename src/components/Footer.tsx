@@ -7,7 +7,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between gap-12">
           <div>
             <p className="text-white/70 text-sm tracking-[0.15em] font-medium">
-              Vision Compass
+              VisionCompass
             </p>
             <p className="text-white/20 text-sm mt-3 leading-relaxed">
               一人ひとりが持っている
@@ -40,7 +40,7 @@ export default function Footer() {
 
         <div className="mt-16 pt-8 border-t border-white/[0.04]">
           <p className="text-white/15 text-xs tracking-wide">
-            &copy; 2025 株式会社Vision Compass
+            &copy; 2025 株式会社VisionCompass
           </p>
         </div>
       </div>

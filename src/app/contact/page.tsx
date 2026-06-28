@@ -5,7 +5,7 @@ import ContactForm from "@/components/ContactForm";
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    "株式会社Vision Compassへのお問い合わせ。事業に関するご質問・ご相談など、お気軽にお問い合わせください。",
+    "株式会社VisionCompassへのお問い合わせ。事業に関するご質問・ご相談など、お気軽にお問い合わせください。",
 };
 
 export default function ContactPage() {
