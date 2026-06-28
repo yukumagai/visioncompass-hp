@@ -4,7 +4,7 @@ import FadeIn from "@/components/FadeIn";
 export const metadata: Metadata = {
   title: "会社概要",
   description:
-    "株式会社VisionCompassの会社概要。ミッション・代表メッセージ・会社情報をご紹介します。",
+    "株式会社VisionCompassの会社概要。ビジョン・ミッション・代表メッセージ・会社情報をご紹介します。",
 };
 
 const companyInfo = [
@@ -30,6 +30,25 @@ export default function AboutPage() {
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90">
               会社概要
             </h1>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* Vision */}
+      <section className="py-32 sm:py-44 bg-night relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
+          <FadeIn>
+            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
+              Vision
+            </p>
+            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white/90 leading-[1.35]">
+              最高のAIパートナーを
+              <br />
+              全ての人に。
+            </h2>
           </FadeIn>
         </div>
       </section>
