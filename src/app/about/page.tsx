@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 const companyInfo = [
   { label: "会社名", value: "株式会社VisionCompass" },
-  { label: "所在地", value: "東京都目黒区八雲2-20-12" },
+  { label: "所在地", value: "東京都目黒区碑文谷5丁目2番5号 T＆Aビル5階" },
   { label: "事業内容", value: "AI睡眠ジャーナリングアプリの開発・運営" },
   { label: "URL", value: "https://visioncompass.jp" },
 ];
