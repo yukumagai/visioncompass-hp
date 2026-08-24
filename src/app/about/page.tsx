@@ -10,7 +10,11 @@ export const metadata: Metadata = {
 const companyInfo = [
   { label: "会社名", value: "株式会社VisionCompass" },
   { label: "所在地", value: "東京都目黒区碑文谷5丁目2番5号 T＆Aビル5階" },
-  { label: "事業内容", value: "AI睡眠ジャーナリングアプリの開発・運営" },
+  {
+    label: "事業内容",
+    value:
+      "AIキャラクターと関係性データ基盤を活用した、パーソナルAIサービスの企画・開発・運営",
+  },
   { label: "URL", value: "https://visioncompass.jp" },
 ];
 
@@ -78,8 +82,36 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* CEO Message */}
+      {/* Business */}
       <section className="py-32 sm:py-44 bg-night relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
+        </div>
+        <div className="relative z-10 max-w-2xl mx-auto px-6 lg:px-8">
+          <FadeIn>
+            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
+              Business
+            </p>
+            <h2 className="text-2xl sm:text-3xl font-bold text-white/90 mb-10">
+              事業内容
+            </h2>
+            <p className="text-white/70 text-base leading-[2]">
+              AIキャラクターと関係性データ基盤を活用した、パーソナルAIサービスの企画・開発・運営
+            </p>
+            <div className="mt-10 space-y-7 text-white/35 text-base leading-[2]">
+              <p>
+                AIを、使う道具から、あなたを知るパートナーへ。VisionCompassは、AIキャラクターをコミュニケーションの入口とし、継続的な対話から育つ関係性データをもとに、一人ひとりに合ったケアや気づきを届けるパーソナルAIサービスを開発しています。
+              </p>
+              <p>
+                第一弾として、誰にも気を遣わずに一日の出来事や気持ちを話し、心を整えて眠るためのAIパートナー「ねるぞう」を提供します。
+              </p>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
+      {/* CEO Message */}
+      <section className="py-32 sm:py-44 bg-night relative overflow-hidden border-t border-white/[0.04]">
         <div className="absolute inset-0 pointer-events-none">
           <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-lavender/[0.02] rounded-full blur-[120px]" />
         </div>

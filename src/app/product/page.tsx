@@ -3,47 +3,69 @@ import Link from "next/link";
 import FadeIn from "@/components/FadeIn";
 
 export const metadata: Metadata = {
-  title: "ねるぞう - AI睡眠ジャーナリングアプリ",
+  title: "ねるぞう - 話して心を整える、眠る前のAIパートナー",
   description:
-    "寝る前のAI対話で内面を記録し、睡眠音声で睡眠の質とメンタルを改善するAI睡眠ジャーナリングアプリ「ねるぞう」。",
+    "誰にも気を遣わず、今日あったことや今の気持ちを話せるAIキャラクター「ねるぞう」。話すうちに心を整え、今夜のあなたに合う睡眠音声とともに静かに眠る準備へ。",
 };
+
+const overview = [
+  "人に話すほどじゃない。",
+  "でも、誰かに聞いてほしい夜がある。",
+  "ねるぞうは、誰にも気を遣わず、今日あったことや今の気持ちを話せるAIキャラクターです。",
+  "話すうちに頭の中が少しずつほどけ、今夜のあなたに合う睡眠音声とともに、静かに眠る準備へ。話した日々は「ねるぞうからのお手紙」として返り、少しずつ自分のことも見えてきます。",
+];
 
 const features = [
   {
     number: "01",
-    title: "AI対話ジャーナリング",
-    description:
-      "寝る前、AIがやさしく問いかけます。今日あったこと、感じたこと、考えたこと——日記を書く必要はありません。対話するだけで、あなたの内面が自然と記録されます。",
+    title: "誰にも気を遣わず話せる、夜の対話",
+    descriptions: [
+      "寝る前、ねるぞうが「今日はどんな一日だった？」とやさしく話しかけます。",
+      "日記を書く必要はありません。今日あったこと、感じたこと、まだ言葉になっていないモヤモヤを、声で自然に話すだけ。",
+      "ねるぞうは、すぐに答えを出したり、良い・悪いで評価したりせず、その夜の気持ちを受け止めながら、頭の中を一緒にほどいていきます。",
+    ],
   },
   {
     number: "02",
-    title: "パーソナライズ睡眠音声",
-    description:
-      "対話で得られたあなたの状態やテーマをもとに、AIがパーソナライズされた睡眠音声を生成。心に寄り添う音声が、深いリラックスと安らかな眠りへ導きます。",
+    title: "今夜のあなたに寄り添う睡眠音声",
+    descriptions: [
+      "話し終えた後は、会話から見えてきた気持ちやテーマに合わせて、その夜に合う睡眠音声を提案します。",
+      "今すぐ答えを出さなくてもよい状態で、呼吸と体をゆるめ、静かに眠る準備へ。",
+      "音声を聴かず、そのまま眠ることも選べます。",
+    ],
   },
   {
     number: "03",
-    title: "睡眠×メンタル分析",
-    description:
-      "蓄積された対話と睡眠のデータから、あなたの心と体のパターンをやさしく可視化。自己理解が深まり、日々をより良い方向へ変えるきっかけを提供します。",
+    title: "話すほど自分が見えてくる、ねるぞうからのお手紙",
+    descriptions: [
+      "ねるぞうは、毎晩話してくれた言葉や出来事を少しずつ覚えています。",
+      "一週間ごとに届く「ねるぞうからのお手紙」では、別々に見えた夜のつながりや、何度か現れていた気持ちを、決めつけずにそっと返します。",
+      "違っていたら訂正することもできます。ねるぞうと一緒に理解を育てながら、話すほど少しずつ、自分の考え方や大切にしていることが見えてきます。",
+    ],
   },
 ];
 
 const steps = [
   {
-    title: "寝る前にAIと対話",
-    description:
-      "お布団に入ったら、ねるぞうを開いてAIと短い対話。今日のできごとや気持ちを自然に話すだけ。",
+    title: "寝る前、ねるぞうに話す",
+    descriptions: [
+      "お布団に入ったら、ねるぞうを開きます。",
+      "話題を選んでも、自由に話しても大丈夫。今日のできごとや気持ちを、思いつくまま声に出します。",
+    ],
   },
   {
-    title: "睡眠音声を聴きながら眠る",
-    description:
-      "対話をもとに生成されたパーソナライズ睡眠音声を聴きながら、リラックスして眠りにつきます。",
+    title: "音声を聴く、またはそのまま眠る",
+    descriptions: [
+      "話した内容がやさしく整理された後、今夜の状態に合う睡眠音声が提案されます。",
+      "音声と一緒に体を休めても、そのまま「おやすみ」をして眠っても大丈夫です。",
+    ],
   },
   {
-    title: "振り返りと気づき",
-    description:
-      "蓄積されたデータから、睡眠の質や心の状態の変化を可視化。自分自身への理解が深まります。",
+    title: "ねるぞうからのお手紙を受け取る",
+    descriptions: [
+      "話した日々が積み重なると、ねるぞうからお手紙が届きます。",
+      "一週間を良い・悪いで採点するのではなく、ねるぞうが覚えていた言葉や出来事を一緒に振り返り、自分では見落としていたつながりに気づいていきます。",
+    ],
   },
 ];
 
@@ -64,11 +86,14 @@ export default function ProductPage() {
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white/90 mb-6">
               ねるぞう
             </h1>
-            <p className="text-white/30 text-base leading-[1.9] max-w-md mx-auto">
-              寝る前のAI対話で内面を記録し、
-              <br />
-              睡眠音声で睡眠の質とメンタルを改善する。
+            <p className="text-white/50 text-base sm:text-lg leading-[1.9] max-w-lg mx-auto mb-10">
+              話して心を整える、眠る前のAIパートナー
             </p>
+            <div className="space-y-5 text-white/30 text-base leading-[2] max-w-lg mx-auto text-left sm:text-center">
+              {overview.map((paragraph) => (
+                <p key={paragraph}>{paragraph}</p>
+              ))}
+            </div>
           </FadeIn>
         </div>
       </section>
@@ -92,9 +117,16 @@ export default function ProductPage() {
                   <h3 className="text-xl sm:text-2xl font-bold text-night mt-3 mb-5">
                     {feature.title}
                   </h3>
-                  <p className="text-night/40 text-base leading-[2] max-w-lg">
-                    {feature.description}
-                  </p>
+                  <div className="space-y-5">
+                    {feature.descriptions.map((description) => (
+                      <p
+                        key={description}
+                        className="text-night/40 text-base leading-[2] max-w-lg"
+                      >
+                        {description}
+                      </p>
+                    ))}
+                  </div>
                 </div>
               </FadeIn>
             ))}
@@ -129,9 +161,16 @@ export default function ProductPage() {
                     <h3 className="text-lg font-bold text-white/75 mb-3">
                       {step.title}
                     </h3>
-                    <p className="text-white/30 text-base leading-[1.9]">
-                      {step.description}
-                    </p>
+                    <div className="space-y-4">
+                      {step.descriptions.map((description) => (
+                        <p
+                          key={description}
+                          className="text-white/30 text-base leading-[1.9]"
+                        >
+                          {description}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </FadeIn>
