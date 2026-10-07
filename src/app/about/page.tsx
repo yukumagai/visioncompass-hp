@@ -9,7 +9,10 @@ export const metadata: Metadata = {
 
 const companyInfo = [
   { label: "会社名", value: "株式会社VisionCompass" },
-  { label: "所在地", value: "東京都目黒区碑文谷5丁目2番5号 T＆Aビル5階" },
+  {
+    label: "所在地",
+    value: "〒153-0042 東京都目黒区青葉台三丁目15番17号 FARO中目黒1階",
+  },
   {
     label: "事業内容",
     value:
