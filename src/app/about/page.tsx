@@ -40,6 +40,7 @@ const philosophy = [
 
 const companyInfo = [
   { label: "会社名", value: "株式会社VisionCompass" },
+  { label: "設立", value: "2026年4月" },
   { label: "代表者", value: "代表取締役CEO　熊谷 祐" },
   {
     label: "所在地",
