@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "ねるぞう プライバシーポリシー",
   description:
-    "AI睡眠ジャーナリングアプリ「ねるぞう」のプライバシーポリシーです。",
+    "AIパートナーアプリ「ねるぞう」のプライバシーポリシーです。",
 };
 
 export default async function PrivacyPage() {
@@ -15,7 +15,6 @@ export default async function PrivacyPage() {
 
   return (
     <LegalDocumentView
-      eyebrow="Privacy Policy"
       fallbackTitle="プライバシーポリシー"
       result={result}
     />

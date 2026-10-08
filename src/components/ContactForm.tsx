@@ -1,18 +1,30 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import { motion } from "framer-motion";
+import { focusRing } from "@/lib/styles";
 
 const inputClass =
-  "w-full px-0 py-3 bg-transparent border-b border-night/10 focus:border-lavender/50 focus:outline-none transition-colors duration-300 text-night text-base placeholder:text-night/20";
+  "w-full border-b border-ink/25 bg-transparent px-0 py-3 text-base text-ink placeholder:text-ink-meta/60 transition-colors duration-200 focus:border-ink focus:outline-none";
+
+const labelClass = "block text-sm text-ink mb-1";
+
+function Required() {
+  return (
+    <span className="ml-2 text-xs text-neru-deep">
+      必須
+    </span>
+  );
+}
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
+    setError("");
 
     const form = e.currentTarget;
     const data = {
@@ -23,85 +35,66 @@ export default function ContactForm() {
       message: (form.elements.namedItem("message") as HTMLTextAreaElement).value,
     };
 
-    const res = await fetch("/api/contact", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-
-    setLoading(false);
-    if (res.ok) {
-      setSubmitted(true);
-    } else {
-      alert("送信に失敗しました。時間をおいて再度お試しください。");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError("送信に失敗しました。時間をおいて再度お試しください。");
+      }
+    } catch {
+      setError("送信に失敗しました。通信環境をご確認のうえ、再度お試しください。");
+    } finally {
+      setLoading(false);
     }
   };
 
   if (submitted) {
     return (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center py-16"
-      >
-        <div className="w-12 h-12 border border-lavender/30 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg
-            className="w-5 h-5 text-lavender"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth={1.5}
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
-        </div>
-        <h3 className="text-xl font-bold text-night mb-3">
-          送信が完了しました
-        </h3>
-        <p className="text-night/40 text-base leading-[1.9]">
+      <div role="status" className="border-t border-ink/80 pt-10">
+        <h2 className="text-xl font-bold text-ink">送信が完了しました</h2>
+        <p className="mt-4 text-base leading-[2] text-ink-soft">
           お問い合わせありがとうございます。
           <br />
-          内容を確認の上、折り返しご連絡いたします。
+          内容を確認のうえ、折り返しご連絡いたします。
         </p>
-      </motion.div>
+      </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-10">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
+      <div className="grid grid-cols-1 gap-10 sm:grid-cols-2">
         <div>
-          <label
-            htmlFor="name"
-            className="block text-sm text-night/35 mb-2 tracking-wide"
-          >
-            お名前 <span className="text-lavender">*</span>
+          <label htmlFor="name" className={labelClass}>
+            お名前
+            <Required />
           </label>
           <input
             type="text"
             id="name"
             name="name"
             required
+            autoComplete="name"
             className={inputClass}
             placeholder="山田 太郎"
           />
         </div>
         <div>
-          <label
-            htmlFor="email"
-            className="block text-sm text-night/35 mb-2 tracking-wide"
-          >
-            メールアドレス <span className="text-lavender">*</span>
+          <label htmlFor="email" className={labelClass}>
+            メールアドレス
+            <Required />
           </label>
           <input
             type="email"
             id="email"
             name="email"
             required
+            autoComplete="email"
             className={inputClass}
             placeholder="example@email.com"
           />
@@ -109,27 +102,22 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="company"
-          className="block text-sm text-night/35 mb-2 tracking-wide"
-        >
-          会社名
+        <label htmlFor="company" className={labelClass}>
+          会社名・所属
         </label>
         <input
           type="text"
           id="company"
           name="company"
+          autoComplete="organization"
           className={inputClass}
-          placeholder="株式会社〇〇"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="subject"
-          className="block text-sm text-night/35 mb-2 tracking-wide"
-        >
-          件名 <span className="text-lavender">*</span>
+        <label htmlFor="subject" className={labelClass}>
+          件名
+          <Required />
         </label>
         <input
           type="text"
@@ -137,36 +125,37 @@ export default function ContactForm() {
           name="subject"
           required
           className={inputClass}
-          placeholder="お問い合わせの件名"
+          placeholder="例：協業のご相談"
         />
       </div>
 
       <div>
-        <label
-          htmlFor="message"
-          className="block text-sm text-night/35 mb-2 tracking-wide"
-        >
-          メッセージ <span className="text-lavender">*</span>
+        <label htmlFor="message" className={labelClass}>
+          お問い合わせ内容
+          <Required />
         </label>
         <textarea
           id="message"
           name="message"
           required
-          rows={5}
-          className={`${inputClass} resize-none`}
-          placeholder="お問い合わせ内容をご記入ください"
+          rows={6}
+          className={`${inputClass} resize-y`}
         />
       </div>
 
-      <div className="pt-4">
-        <button
-          type="submit"
-          disabled={loading}
-          className="w-full sm:w-auto px-12 py-3.5 bg-night text-white/70 text-sm tracking-wide rounded-full hover:bg-night-800 disabled:opacity-40 transition-all duration-300"
-        >
-          {loading ? "送信中..." : "送信する"}
-        </button>
-      </div>
+      {error && (
+        <p role="alert" className="text-sm leading-relaxed text-[#A2422F]">
+          {error}
+        </p>
+      )}
+
+      <button
+        type="submit"
+        disabled={loading}
+        className={`inline-flex w-full items-center justify-center bg-ink px-10 py-4 text-sm font-medium tracking-wide text-paper transition-colors duration-200 hover:bg-ink-soft disabled:opacity-50 sm:w-auto ${focusRing}`}
+      >
+        {loading ? "送信中…" : "送信する"}
+      </button>
     </form>
   );
 }

@@ -1,17 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  --color-night: #0C0F1A;
-  --color-night-800: #12162B;
-  --color-night-700: #1C2240;
-  --color-night-600: #282F54;
-  --color-mist: #F5F3EE;
-  --color-mist-100: #E8E5DE;
-  --color-mist-200: #D8D4CC;
-  --color-lavender: #9B96C8;
-  --color-lavender-light: #B8B4DA;
-  --color-lavender-dark: #7A75A8;
-  --color-lavender-muted: #6E6A9A;
+  --color-paper: #FAF8F4;
+  --color-paper-deep: #F3EFE8;
+  --color-ink: #2B2A28;
+  --color-ink-soft: #55514B;
+  --color-ink-meta: #6F6A63;
+  --color-rule: #E4DED4;
+  --color-neru: #6B5CA5;
+  --color-neru-deep: #54478A;
+  --color-neru-wash: #F1EDF6;
+
   --font-sans: var(--font-noto-sans-jp);
 }
 
@@ -19,6 +18,30 @@ html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 ::selection {
-  background-color: rgba(155, 150, 200, 0.3);
+  background-color: rgba(107, 92, 165, 0.2);
+}
+
+.jp-phrase {
+  line-break: strict;
+  text-wrap: pretty;
+}
+
+.jp-heading {
+  word-break: auto-phrase;
+  text-wrap: pretty;
 }

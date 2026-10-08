@@ -1,47 +1,53 @@
 import type { Metadata } from "next";
-import FadeIn from "@/components/FadeIn";
+import Link from "next/link";
 import ContactForm from "@/components/ContactForm";
+import PageHeader from "@/components/PageHeader";
+import { container, textLink } from "@/lib/styles";
 
 export const metadata: Metadata = {
   title: "お問い合わせ",
   description:
-    "株式会社VisionCompassへのお問い合わせ。事業に関するご質問・ご相談など、お気軽にお問い合わせください。",
+    "株式会社VisionCompassへのお問い合わせ。協業・取材・投資に関するご相談、ねるぞうへのご意見などを受け付けています。",
 };
+
+const topics = [
+  "協業・提携のご相談",
+  "取材のお申し込み",
+  "投資に関するご相談",
+  "ねるぞうへのご意見・ご要望",
+];
 
 export default function ContactPage() {
   return (
     <>
-      {/* Header */}
-      <section className="pt-36 pb-20 sm:pt-44 sm:pb-28 bg-night relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-lavender/[0.02] rounded-full blur-[120px]" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <FadeIn>
-            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-6">
-              Contact
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90">
-              お問い合わせ
-            </h1>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHeader
+        label="お問い合わせ"
+        title="お問い合わせ"
+        lead="VisionCompassとねるぞうに関するご相談を、こちらのフォームから受け付けています。"
+      />
 
-      {/* Form */}
-      <section className="py-24 sm:py-32 bg-mist">
-        <div className="max-w-2xl mx-auto px-6 lg:px-8">
-          <FadeIn>
-            <p className="text-night/35 text-base leading-[1.9] text-center mb-16">
-              事業に関するご質問・ご相談、取材のお申し込みなど、
-              <br className="hidden sm:block" />
-              下記フォームよりお気軽にお問い合わせください。
-            </p>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <ContactForm />
-          </FadeIn>
+      <section aria-label="お問い合わせフォーム" className="border-t border-rule">
+        <div className={`${container} py-20 sm:py-24`}>
+          <div className="grid gap-16 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-4">
+              <h2 className="text-sm text-ink">受け付けている内容</h2>
+              <ul className="mt-5 space-y-2 text-base leading-[1.9] text-ink-soft">
+                {topics.map((topic) => (
+                  <li key={topic}>{topic}</li>
+                ))}
+              </ul>
+              <p className="jp-phrase mt-8 text-sm leading-[1.9] text-ink-meta">
+                個人情報の取り扱いについては、
+                <Link href="/legal/privacy" className={`mx-1 ${textLink}`}>
+                  プライバシーポリシー
+                </Link>
+                をご確認ください。
+              </p>
+            </div>
+            <div className="lg:col-span-8">
+              <ContactForm />
+            </div>
+          </div>
         </div>
       </section>
     </>

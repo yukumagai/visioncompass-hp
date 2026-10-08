@@ -1,46 +1,86 @@
 import Link from "next/link";
+import { storeLinks } from "@/lib/neruzo";
+import { container, focusRing } from "@/lib/styles";
+
+const groups = [
+  {
+    heading: "会社",
+    links: [
+      { href: "/about", label: "会社概要" },
+      { href: "/contact", label: "お問い合わせ" },
+    ],
+  },
+  {
+    heading: "プロダクト",
+    links: [{ href: "/product", label: "ねるぞう" }],
+  },
+  {
+    heading: "規約",
+    links: [
+      { href: "/legal/terms", label: "利用規約" },
+      { href: "/legal/privacy", label: "プライバシーポリシー" },
+    ],
+  },
+];
+
+const linkClass = `text-sm text-ink-soft hover:text-ink transition-colors duration-200 rounded-sm ${focusRing}`;
 
 export default function Footer() {
   return (
-    <footer className="bg-night border-t border-white/[0.04]">
-      <div className="max-w-6xl mx-auto px-6 lg:px-8 py-16">
-        <div className="flex flex-col md:flex-row justify-between gap-12">
-          <div>
-            <p className="text-white/70 text-sm tracking-[0.15em] font-medium">
+    <footer className="bg-paper border-t border-rule">
+      <div className={`${container} py-16 sm:py-20`}>
+        <div className="grid gap-12 lg:grid-cols-12">
+          <div className="lg:col-span-5">
+            <p className="text-[15px] tracking-[0.12em] font-medium text-ink">
               VisionCompass
             </p>
-            <p className="text-white/20 text-sm mt-3 leading-relaxed">
+            <p className="mt-4 text-sm leading-relaxed text-ink-meta">
               世界を才能の花で満たす。
             </p>
           </div>
 
-          <div className="flex gap-16">
-            <ul className="space-y-3">
-              {[
-                { href: "/about", label: "会社概要" },
-                { href: "/product", label: "プロダクト" },
-                { href: "/contact", label: "お問い合わせ" },
-                { href: "/legal/terms", label: "利用規約" },
-                { href: "/legal/privacy", label: "プライバシーポリシー" },
-              ].map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-white/25 hover:text-white/50 transition-colors duration-300 text-sm tracking-wide"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          <nav
+            aria-label="フッターナビゲーション"
+            className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-7"
+          >
+            {groups.map((group) => (
+              <div key={group.heading}>
+                <h2 className="text-xs tracking-wide text-ink-meta">
+                  {group.heading}
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {group.links.map((link) => (
+                    <li key={link.href}>
+                      <Link href={link.href} className={linkClass}>
+                        {link.label}
+                      </Link>
+                    </li>
+                  ))}
+                  {group.heading === "プロダクト" &&
+                    storeLinks.map((store) => (
+                      <li key={store.href}>
+                        <a
+                          href={store.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClass}
+                        >
+                          {store.label}
+                          <span className="sr-only">
+                            （新しいタブで開きます）
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                </ul>
+              </div>
+            ))}
+          </nav>
         </div>
 
-        <div className="mt-16 pt-8 border-t border-white/[0.04]">
-          <p className="text-white/15 text-xs tracking-wide">
-            &copy; 2025 株式会社VisionCompass
-          </p>
-        </div>
+        <p className="mt-16 border-t border-rule pt-8 text-xs text-ink-meta">
+          &copy; 2026 株式会社VisionCompass
+        </p>
       </div>
     </footer>
   );

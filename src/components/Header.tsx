@@ -2,102 +2,127 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
+import { focusRing } from "@/lib/styles";
 
 const navLinks = [
-  { href: "/", label: "ホーム" },
   { href: "/about", label: "会社概要" },
   { href: "/product", label: "プロダクト" },
   { href: "/contact", label: "お問い合わせ" },
 ];
 
 export default function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [menuOpen]);
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-night/90 backdrop-blur-lg" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 bg-paper border-b transition-colors duration-300 ${
+        scrolled || menuOpen ? "border-rule" : "border-transparent"
       }`}
     >
-      <nav className="max-w-6xl mx-auto px-6 lg:px-8">
+      <nav
+        aria-label="メインナビゲーション"
+        className="max-w-6xl mx-auto px-6 lg:px-10"
+      >
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link
             href="/"
-            className="text-white/90 text-sm tracking-[0.15em] font-medium"
+            className={`text-[15px] tracking-[0.12em] font-medium text-ink rounded-sm ${focusRing}`}
           >
             VisionCompass
           </Link>
 
-          <div className="hidden md:flex items-center gap-10">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/35 hover:text-white/70 transition-colors duration-300 text-sm tracking-wide"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </div>
+          <ul className="hidden md:flex items-center gap-10">
+            {navLinks.map((link) => {
+              const current = pathname.startsWith(link.href);
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={current ? "page" : undefined}
+                    className={`text-sm tracking-wide transition-colors duration-200 rounded-sm ${
+                      current
+                        ? "text-ink underline decoration-ink/40 underline-offset-[10px]"
+                        : "text-ink-soft hover:text-ink"
+                    } ${focusRing}`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
 
           <button
+            type="button"
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden text-white/50 p-2"
-            aria-label="メニュー"
+            className={`md:hidden -mr-2 p-2 rounded-sm text-ink ${focusRing}`}
+            aria-label={menuOpen ? "メニューを閉じる" : "メニューを開く"}
+            aria-expanded={menuOpen}
+            aria-controls="mobile-menu"
           >
-            <div className="w-5 h-4 relative flex flex-col justify-between">
+            <span className="block w-5 h-3.5 relative" aria-hidden="true">
               <span
-                className={`block h-px w-full bg-current transition-all duration-300 origin-center ${
-                  menuOpen ? "rotate-45 translate-y-[7.5px]" : ""
+                className={`absolute left-0 top-0 h-px w-full bg-current transition-transform duration-200 ${
+                  menuOpen ? "translate-y-[7px] rotate-45" : ""
                 }`}
               />
               <span
-                className={`block h-px w-full bg-current transition-all duration-300 ${
+                className={`absolute left-0 top-[7px] h-px w-full bg-current transition-opacity duration-200 ${
                   menuOpen ? "opacity-0" : ""
                 }`}
               />
               <span
-                className={`block h-px w-full bg-current transition-all duration-300 origin-center ${
-                  menuOpen ? "-rotate-45 -translate-y-[7.5px]" : ""
+                className={`absolute left-0 top-[14px] h-px w-full bg-current transition-transform duration-200 ${
+                  menuOpen ? "-translate-y-[7px] -rotate-45" : ""
                 }`}
               />
-            </div>
+            </span>
           </button>
         </div>
       </nav>
 
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden bg-night/95 backdrop-blur-lg"
-          >
-            <div className="px-6 py-6 space-y-1">
-              {navLinks.map((link) => (
+      {menuOpen && (
+        <div id="mobile-menu" className="md:hidden bg-paper border-t border-rule">
+          <ul className="px-6 py-4">
+            {navLinks.map((link) => (
+              <li
+                key={link.href}
+                className="border-b border-rule last:border-b-0"
+              >
                 <Link
-                  key={link.href}
                   href={link.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block py-3 text-white/40 hover:text-white/70 transition-colors duration-300 text-sm tracking-wide"
+                  aria-current={
+                    pathname.startsWith(link.href) ? "page" : undefined
+                  }
+                  className={`block py-4 text-base text-ink rounded-sm ${focusRing}`}
                 >
                   {link.label}
                 </Link>
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </header>
   );
 }

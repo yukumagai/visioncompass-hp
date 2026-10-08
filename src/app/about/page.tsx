@@ -1,14 +1,46 @@
 import type { Metadata } from "next";
-import FadeIn from "@/components/FadeIn";
+import Link from "next/link";
+import PageHeader from "@/components/PageHeader";
+import { container, textLink } from "@/lib/styles";
 
 export const metadata: Metadata = {
   title: "会社概要",
   description:
-    "株式会社VisionCompassの会社概要。ビジョン・ミッション・代表メッセージ・会社情報をご紹介します。",
+    "株式会社VisionCompassの会社概要。ビジョン・ミッション・事業内容・代表メッセージ・会社情報をご紹介します。",
 };
+
+const ceoProfile = [
+  "2014年、早稲田大学教育学部卒業。在学中の2013年に起業し、Webマーケターとして上場企業を中心に100件以上のグロースハックを担当。",
+  "2019年にRelook株式会社を創業。瞑想アプリ「Relook」を開発し、2020年に株式会社ARETECO HOLDINGSへ売却。同アプリは45万DLを超えたアプリに成長。",
+  "2026年4月に株式会社VisionCompassを創業。AIキャラクターとの対話を通じて、日々の出来事や気持ちを振り返るアプリ「ねるぞう」の開発・運営に取り組んでいる。",
+];
+
+const philosophy = [
+  {
+    label: "ビジョン",
+    statement: ["最高のAIパートナーを", "全ての人に。"],
+  },
+  {
+    label: "ミッション",
+    statement: ["魂の望みで生きられる", "世界を創る。"],
+    note: (
+      <>
+        <span className="whitespace-nowrap">一人ひとり</span>
+        が持っている才能の花を開花させる。AIテクノロジーの力で
+        <span className="whitespace-nowrap">一人ひとり</span>
+        の心に寄り添い、自分らしい生き方をサポートします。
+      </>
+    ),
+  },
+  {
+    label: "スローガン",
+    statement: ["世界を才能の花で満たす。"],
+  },
+];
 
 const companyInfo = [
   { label: "会社名", value: "株式会社VisionCompass" },
+  { label: "代表者", value: "代表取締役CEO　熊谷 祐" },
   {
     label: "所在地",
     value: "〒153-0042 東京都目黒区青葉台三丁目15番17号 FARO中目黒1階",
@@ -21,184 +53,147 @@ const companyInfo = [
   { label: "URL", value: "https://visioncompass.jp" },
 ];
 
+const sectionLabel = "text-sm tracking-wide text-ink-meta lg:col-span-3 lg:pt-2";
+
 export default function AboutPage() {
   return (
     <>
-      {/* Header */}
-      <section className="pt-36 pb-20 sm:pt-44 sm:pb-28 bg-night relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
-        </div>
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <FadeIn>
-            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-6">
-              About
-            </p>
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white/90">
-              会社概要
-            </h1>
-          </FadeIn>
-        </div>
-      </section>
+      <PageHeader label="会社概要" title="VisionCompassについて" />
 
-      {/* Vision */}
-      <section className="py-32 sm:py-44 bg-night relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
-        </div>
-        <div className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <FadeIn>
-            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
-              Vision
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-white/90 leading-[1.35]">
-              最高のAIパートナーを
-              <br />
-              全ての人に。
-            </h2>
-          </FadeIn>
-        </div>
-      </section>
-
-      {/* Mission */}
-      <section className="py-32 sm:py-44 bg-mist">
-        <div className="max-w-3xl mx-auto px-6 lg:px-8 text-center">
-          <FadeIn>
-            <p className="text-lavender-muted text-sm tracking-[0.3em] uppercase mb-8">
-              Mission
-            </p>
-            <h2 className="text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-night leading-[1.35]">
-              魂の望みで生きられる
-              <br />
-              世界を創る
-            </h2>
-            <div className="mt-10 w-8 h-px bg-lavender/40 mx-auto" />
-            <p className="mt-10 text-lavender-muted text-base leading-[2]">
-              世界を才能の花で満たす。
-            </p>
-            <p className="mt-8 text-night/40 text-base leading-[2] max-w-xl mx-auto">
-              一人ひとりが持っている才能の花を開花させる。
-              AIテクノロジーの力で一人ひとりの心に寄り添い、
-              自分らしい生き方をサポートします。
-            </p>
-          </FadeIn>
+      {/* Philosophy */}
+      <section aria-label="理念" className={container}>
+        <div className="border-t border-ink/80">
+          {philosophy.map((item) => (
+            <div
+              key={item.label}
+              className="grid gap-4 border-b border-rule py-12 sm:py-16 lg:grid-cols-12 lg:gap-12"
+            >
+              <h2 className={sectionLabel}>{item.label}</h2>
+              <div className="lg:col-span-9">
+                <p className="text-[1.625rem] sm:text-[2.25rem] font-bold leading-[1.55] tracking-[0.02em] text-ink">
+                  {item.statement.map((line) => (
+                    <span key={line} className="inline-block">
+                      {line}
+                    </span>
+                  ))}
+                </p>
+                {item.note && (
+                  <p className="jp-phrase mt-8 max-w-[34em] text-base leading-[2.05] text-ink-soft">
+                    {item.note}
+                  </p>
+                )}
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 
       {/* Business */}
-      <section className="py-32 sm:py-44 bg-night relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-lavender/[0.02] rounded-full blur-[120px]" />
-        </div>
-        <div className="relative z-10 max-w-2xl mx-auto px-6 lg:px-8">
-          <FadeIn>
-            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
-              Business
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white/90 mb-10">
-              事業内容
-            </h2>
-            <p className="text-white/70 text-base leading-[2]">
-              AIキャラクターと関係性データ基盤を活用した、パーソナルAIサービスの企画・開発・運営
-            </p>
-            <div className="mt-10 space-y-7 text-white/35 text-base leading-[2]">
-              <p>
-                AIを、使う道具から、あなたを知るパートナーへ。VisionCompassは、AIキャラクターをコミュニケーションの入口とし、継続的な対話から育つ関係性データをもとに、一人ひとりに合ったケアや気づきを届けるパーソナルAIサービスを開発しています。
-              </p>
-              <p>
-                第一弾として、誰にも気を遣わずに一日の出来事や気持ちを話し、心を整えて眠るためのAIパートナー「ねるぞう」を提供します。
-              </p>
+      <section aria-labelledby="business-heading">
+        <div className={`${container} py-24 sm:py-32`}>
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+            <p className={sectionLabel}>事業内容</p>
+            <div className="lg:col-span-9">
+              <h2
+                id="business-heading"
+                className="jp-heading text-2xl sm:text-[2rem] font-bold leading-[1.6]"
+              >
+                AIを、使う道具から、
+                <br className="hidden sm:inline" />
+                あなたを知るパートナーへ。
+              </h2>
+              <div className="mt-10 max-w-[34em] space-y-6 text-base sm:text-[17px] leading-[2.05] text-ink-soft">
+                <p className="jp-phrase">
+                  VisionCompassは、AIキャラクターをコミュニケーションの入口とし、継続的な対話から育つ関係性データをもとに、一人ひとりに合ったケアや気づきを届けるパーソナルAIサービスを開発しています。
+                </p>
+                <p className="jp-phrase">
+                  第一弾として、誰にも気を遣わずに一日の出来事や気持ちを話し、気持ちよく一日を終えるためのAIパートナー「ねるぞう」を提供しています。
+                </p>
+              </div>
+              <Link href="/product" className={`mt-10 inline-block ${textLink}`}>
+                ねるぞうについて
+              </Link>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* CEO Message */}
-      <section className="py-32 sm:py-44 bg-night relative overflow-hidden border-t border-white/[0.04]">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-lavender/[0.02] rounded-full blur-[120px]" />
-        </div>
-
-        <div className="relative z-10 max-w-2xl mx-auto px-6 lg:px-8">
-          <FadeIn>
-            <p className="text-lavender/50 text-sm tracking-[0.3em] uppercase mb-8">
-              Message
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-white/90 mb-16">
+      <section aria-labelledby="message-heading" className="bg-paper-deep">
+        <div className={`${container} py-24 sm:py-32`}>
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+            <h2 id="message-heading" className={sectionLabel}>
               代表メッセージ
             </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <div className="space-y-7 text-white/35 text-base leading-[2]">
-              <p>
-                私は20代で瞑想アプリの事業を経験する中で、ひとつの確信を持ちました。
-              </p>
-              <p className="text-white/70 text-base">
-                「人は、自分のことを驚くほど知らない」ということです。
-              </p>
-              <p>
-                自分が何を感じているのか。何にエネルギーが湧くのか。何を本当に大切にしているのか。
-                日々の忙しさの中で、こうした問いに向き合う時間は、ほとんどありません。
-              </p>
-              <p>
-                でも、自分の内面を理解した瞬間——人は驚くほど変わります。
-                迷いが消え、判断が速くなり、自分だけの道が見えてくる。
-              </p>
-              <p>
-                この体験を、テクノロジーの力で、もっと多くの人に届けたい。
-                それがVisionCompassの出発点です。
-              </p>
-              <p>
-                最初のプロダクトとして、AI睡眠ジャーナリングアプリ「ねるぞう」を開発しています。
-                寝る前のわずかな時間、AIとの対話を通じて自分自身と向き合う。
-                その小さな習慣が、あなたの中に眠っている才能の花を開かせる——私たちはそう信じています。
-              </p>
-            </div>
-
-            <div className="mt-16 pt-8 border-t border-white/[0.06]">
-              <p className="text-white/50 text-sm">
+            <div className="lg:col-span-9">
+              <div className="max-w-[34em] space-y-6 text-base sm:text-[17px] leading-[2.05] text-ink-soft">
+                <p className="jp-phrase">
+                  私は20代で瞑想アプリの事業を経験する中で、ひとつの確信を持ちました。
+                </p>
+                <p className="jp-heading py-2 text-xl sm:text-2xl font-bold leading-[1.7] text-ink">
+                  「人は、自分のことを驚くほど知らない」ということです。
+                </p>
+                <p className="jp-phrase">
+                  自分が何を感じているのか。何にエネルギーが湧くのか。何を本当に大切にしているのか。日々の忙しさの中で、こうした問いに向き合う時間は、ほとんどありません。
+                </p>
+                <p className="jp-phrase">
+                  でも、自分の内面を理解した瞬間——人は驚くほど変わります。迷いが消え、判断が速くなり、自分だけの道が見えてくる。
+                </p>
+                <p className="jp-phrase">
+                  この体験を、テクノロジーの力で、もっと多くの人に届けたい。それがVisionCompassの出発点です。
+                </p>
+                <p className="jp-phrase">
+                  最初のプロダクトとして、眠る前に今日のことを話せるAIパートナー「ねるぞう」を開発しています。寝る前のわずかな時間、AIとの対話を通じて自分自身と向き合う。その小さな習慣が、あなたの中に眠っている才能の花を開かせる——私たちはそう信じています。
+                </p>
+              </div>
+              <p className="mt-12 text-sm leading-relaxed text-ink">
                 株式会社VisionCompass
+                <br />
+                代表取締役CEO　熊谷 祐
               </p>
-              <p className="text-white/25 text-sm mt-1">
-                代表取締役　熊谷 祐
-              </p>
+
+              <div className="mt-20 max-w-[34em] border-t border-rule pt-12">
+                <h3 className="text-sm text-ink-meta">プロフィール</h3>
+                <p className="mt-5 text-lg font-bold text-ink">
+                  熊谷 祐
+                  <span className="ml-3 text-sm font-normal text-ink-soft">
+                    代表取締役CEO
+                  </span>
+                </p>
+                <div className="mt-6 space-y-5 text-base leading-[2] text-ink-soft">
+                  {ceoProfile.map((paragraph) => (
+                    <p key={paragraph} className="jp-phrase">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+              </div>
             </div>
-          </FadeIn>
+          </div>
         </div>
       </section>
 
       {/* Company Info */}
-      <section className="py-32 sm:py-44 bg-mist">
-        <div className="max-w-2xl mx-auto px-6 lg:px-8">
-          <FadeIn>
-            <p className="text-lavender-muted text-sm tracking-[0.3em] uppercase mb-8">
-              Company
-            </p>
-            <h2 className="text-2xl sm:text-3xl font-bold text-night mb-16">
+      <section aria-labelledby="company-heading">
+        <div className={`${container} py-24 sm:py-32`}>
+          <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
+            <h2 id="company-heading" className={sectionLabel}>
               会社情報
             </h2>
-          </FadeIn>
-
-          <FadeIn delay={0.1}>
-            <dl>
-              {companyInfo.map((item, index) => (
+            <dl className="lg:col-span-9 border-t border-ink/80">
+              {companyInfo.map((item) => (
                 <div
                   key={item.label}
-                  className={`flex flex-col sm:flex-row py-5 ${
-                    index !== companyInfo.length - 1
-                      ? "border-b border-night/[0.06]"
-                      : ""
-                  }`}
+                  className="grid gap-1 border-b border-rule py-5 sm:grid-cols-[8rem_1fr] sm:gap-6"
                 >
-                  <dt className="sm:w-36 text-sm text-night/35 mb-1 sm:mb-0 shrink-0 tracking-wide">
-                    {item.label}
-                  </dt>
-                  <dd className="text-night/60 text-base">{item.value}</dd>
+                  <dt className="text-sm text-ink-meta">{item.label}</dt>
+                  <dd className="jp-phrase text-base leading-[1.9] text-ink">
+                    {item.value}
+                  </dd>
                 </div>
               ))}
             </dl>
-          </FadeIn>
+          </div>
         </div>
       </section>
     </>
